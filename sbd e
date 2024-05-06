@@ -1,0 +1,80 @@
+-- 1. Jelaskan apa itu perintah COMMIT dan ROLLBACK!
+--COMMIT adalah perintah yang digunakan untuk menyimpan transaksi secara permanen di database.
+--ROLLBACK  adalah Perintah Yang digunakan untuk mengembalikan database ke bentuk awal.
+
+-- 2. Buatlah tabel Barang seperti dibawah ini
+-- | ID	 | Barang	 | Tujuan 	|
+-- | 201 | Paku		 | Bandung  |
+-- | 203 | Kayu		 | Jakarta  |
+-- | 206 | Pasir	 | Bogor	|
+-- Kemudian buat view dengan nama view V_BARANG_NPM yang menampilkan
+-- ID dan Tujuan dari table Barang! 
+-- dan berikan perintah untuk menampilkan view yang telah kamu buat!
+
+--Tahap 1 : Membuat tabel barang seperti diatas
+CREATE TABLE Barang (
+    ID VARCHAR(5) PRIMARY KEY,
+    Barang VARCHAR(30),
+    Tujuan VARCHAR(30)
+);
+ 
+INSERT INTO Barang VALUES ('201','Paku','Bandung');
+INSERT INTO Barang VALUES ('203','Kayu','Jakarta');
+INSERT INTO Barang VALUES ('2015','Pasir','Bogor');
+
+SELECT
+    *
+FROM Barang;
+
+--Tahap 2 : Membuat tabel view untuk menampilkan ID dan Tujuannya
+CREATE VIEW V_BARANG_11122099 AS
+SELECT ID, Tujuan
+From Barang;
+
+SELECT
+    *
+FROM v_barang_11122099;
+
+-- 3. Seorang pengelola jadwal ke berangkatan bis sedang berjaga pada pagi hari, ia mendata penumpang yang akan pergi ke tujuannya
+-- masing-masing. Data akan langsung dicatat sebagai table berangkat berikut:
+-- | ID	 | Nama 	 | Tujuan 	|
+-- | 111 | Loid 	 | Bandung  |
+-- | 134 | Yor		 | Jakarta  |
+-- | 176 | Anya		 | Jonggol  | 
+-- Data diatas adalah orang sudah memesan meskipun belum membayar, dalam 1 x 24 jam maka data akan dihapus apa bila 
+-- belum membayar. Data akan dipermanenkan jika orang tersebut sudah membayar, para penumpang yang sudah membayar 
+-- maka uangnya sudah tidah bisa dikembalikan. Pada waktu yang hampir bersamaan ketiga penumpang tersebut melunasi pembayaran.
+-- Sehingga data dapat dipermanenkan. Kemudian pada siang hari seorang penumpang bernama Fiona ingin pergi dengan tujuan ke Bandung.
+-- Data penumpang pun berubah menjadi seperti ini:
+-- | ID	 | Nama 	 | Tujuan 	|
+-- | 111 | Loid 	 | Bandung  |
+-- | 134 | Yor		 | Jakarta  |
+-- | 176 | Anya		 | Jonggol  |
+-- | 181 | Fiona	 | Bandung  |
+-- Akan tetapi setelah 1 x 24 jam penumpang atas nama Fiona tidak melunasi pembayarannya. Sehingga data tersebut dikembalikan seperti
+-- sebelumnnya menjadi seperti ini:
+
+--Tahap 1 : Membuat tabel keberangkatan bis
+
+CREATE TABLE Berangkat (
+ID VARCHAR(5) PRIMARY KEY,
+    Nama VARCHAR(30),
+    Tujuan VARCHAR(30)
+    );
+    
+INSERT INTO Berangkat VALUES ('111','Loid','Bandung');
+INSERT INTO Berangkat VALUES ('134','Yor','Jakarta');
+INSERT INTO Berangkat VALUES ('176','Anya','Jonggol');
+
+SELECT
+    *
+FROM Berangkat;
+
+--Tahap 2 : Karena pada waktu yang hampir bersamaan ketiga penumpang tersebut melunasi pembayaran maka data di permanenkan
+COMMIT;
+
+--Tahap 3 : Menambahkan data seorang penumpang bernama Fiona dengan tujuan bandung
+INSERT INTO Berangkat VALUES ('181','Fiona','Bandung');
+
+--Tahap 4 : Karena penumpang atas nama Fiona tidak melunasi pembayarannya. Sehingga data tersebut dikembalikan seperti sebelumnnya
+ROLLBACK;
