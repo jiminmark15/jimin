@@ -1,0 +1,142 @@
+/*
+-- Nomor 1
+Apa itu DCL dan apa saja perintah di dalam DCL? sebutkan dan jelaskan!
+-- DCL adalah bagian dari SQL (Structured Query Language) yang digunakan untuk mengontrol hak akses dalam basis data. Terdapat 2 perintah dalam DCL yaitu :
+-- GRANT, merupakan perintah untuk memberikan hak akses kepada pengguna atau peran tertentu dalam basis data. Misalnya, Anda dapat memberikan izin SELECT kepada pengguna agar dapat membaca data dari tabel tertentu.
+-- REVOKE, merupakan perintah untuk mencabut hak akses yang sebelumnya diberikan dengan perintah GRANT. Misalnya, jika Anda ingin menghapus izin INSERT dari pengguna pada tabel tertentu, Anda dapat menggunakan perintah REVOKE.
+
+
+-- Nomor 2
+Buat dua tabel berikut ini dalam database Oracle!
+Tabel Employees dengan kolom-kolom berikut:
+--------------------------------------------------------------------------------
+| employee_id (PK) | full_name      | job_title           | department_id (FK) |
+--------------------------------------------------------------------------------
+| 0123             | afrizal fathan | back end programmer | IT123              |
+| 0345             | diva rizky     | network engineer    | IA345              |
+| 0567             | damar ardian   | project manager     | IT123              |
+--------------------------------------------------------------------------------
+*/
+
+-- Membuat Table Employees
+CREATE TABLE Employees (
+    employee_id VARCHAR2(10) PRIMARY KEY,
+    full_name VARCHAR2(50),
+    job_title VARCHAR2(50),
+    department_id VARCHAR2(10)
+);
+
+-- Membuat data employees untuk table employees
+INSERT INTO Employees (employee_id, full_name, job_title, department_id) VALUES ('0123', 'afrizal fathan', 'back end programmer', 'IT123');
+INSERT INTO Employees (employee_id, full_name, job_title, department_id) VALUES ('0345', 'diva rizky', 'network engineer', 'IA345');
+INSERT INTO Employees (employee_id, full_name, job_title, department_id) VALUES ('0567', 'damar ardian', 'project manager', 'IT123');
+
+-- View untuk Table Employees
+SELECT * FROM Employees;
+
+/*
+Tabel Departments dengan kolom-kolom berikut:
+------------------------------------------------------
+| department_id (PK) | department_name    | location |
+------------------------------------------------------
+| IT123              | IT Department      | Tower C  |
+| DG789              | Design Department  | Tower B  |
+| IA345              | Network Department | Tower E  |
+------------------------------------------------------
+*/
+
+-- Membuat table departments
+CREATE TABLE Departments (
+    department_id VARCHAR2(10) PRIMARY KEY,
+    department_name VARCHAR2(50),
+    location VARCHAR2(50)
+);
+
+-- Membuat data untuk table departments
+INSERT INTO Departments (department_id, department_name, location) VALUES ('IT123', 'IT Department', 'Tower C');
+INSERT INTO Departments (department_id, department_name, location) VALUES ('DG789', 'Design Department', 'Tower B');
+INSERT INTO Departments (department_id, department_name, location) VALUES ('IA345', 'Network Department', 'Tower E');
+
+/*
+Buatlah sebuah view yang menampilkan informasi berikut:
+Nama lengkap karyawan
+Jabatan karyawan
+Nama departemen
+Lokasi departemen
+*/
+
+-- Menghubungkan Table employees dengan departments
+CREATE VIEW Employee_Department_Info AS
+SELECT E.full_name AS Employee_Name,
+       E.job_title AS Job_Title,
+       D.department_name AS Department_Name,
+       D.location AS Department_Location
+FROM Employees E
+JOIN Departments D ON E.department_id = D.department_id;
+
+-- view table dengan informasi diatas
+SELECT * FROM Employee_Department_Info;
+
+
+/*
+-- Nomor 3
+Sebuah perpustakaan di Universitas memiliki sistem peminjaman buku. Setiap kali seorang mahasiswa 
+meminjam buku, jumlah buku yang tersedia harus dikurangi. Pada hari Rabu, tiga mahasiswa meminjam 
+2 buku Struktur Data dan 1 buku Pemrograman Berbasis Web, setelah itu lakukan penyimpanan sementara
+(savepoint). Keesokan harinya salah satu mahasiswa mengembalikkan 1 buku Struktur Data dan 
+meminjam 1 buku Sistem Jaringan. 
+Implementasikan transaksi Oracle untuk mencatat peminjaman buku oleh mahasiswa tersebut dan tampilkan setiap pembaruan 
+transaksi dari jumlah buku yang tersedia di dalam tabel "Buku" serta simpan data tersebut secara
+permanen.
+
+Ketentuan struktur tabel seperti dibawah ini:
+nama database = nama_npm
+
+Struktur Tabel
+nama table = buku_nama_npm
+
+RECORD TABLE
+-------------------------------------------------------------
+| Id_buku  | 	judul_buku		  | jumlah_tersedia |
+-------------------------------------------------------------
+|    001   | Pemrograman Berbasis Web	  |  	  50        |
+|    002   | Struktur Data		  |  	  50        |
+|    003   | Sistem Jaringan		  |  	  50        |
+-------------------------------------------------------------
+*/
+
+-- Membuat table buku
+CREATE TABLE Buku_Azka_10122251 (
+    Id_buku VARCHAR2(10) PRIMARY KEY,
+    judul_buku VARCHAR2(100),
+    jumlah_tersedia INT
+);
+
+-- Menginput data ke dalam table buku
+INSERT INTO Buku_Azka_10122251 (Id_buku, judul_buku, jumlah_tersedia) VALUES ('001', 'Pemrograman Berbasis Web', 50);
+INSERT INTO Buku_Azka_10122251 (Id_buku, judul_buku, jumlah_tersedia) VALUES ('002', 'Struktur Data', 50);
+INSERT INTO Buku_Azka_10122251 (Id_buku, judul_buku, jumlah_tersedia) VALUES ('003', 'Sistem Jaringan', 50);
+
+-- savepoint
+BEGIN
+    SAVEPOINT savepoint_1;
+    
+        UPDATE Buku_Azka_10122251 SET jumlah_tersedia = jumlah_tersedia - 2 WHERE judul_buku = 'Struktur Data';
+        UPDATE Buku_Azka_10122251 SET jumlah_tersedia = jumlah_tersedia - 1 WHERE judul_buku = 'Pemrograman Berbasis Web';
+
+
+    SAVEPOINT savepoint_2;
+    
+        UPDATE Buku_Azka_10122251 SET jumlah_tersedia = jumlah_tersedia + 1 WHERE judul_buku = 'Struktur Data';
+        UPDATE Buku_Azka_10122251 SET jumlah_tersedia = jumlah_tersedia - 1 WHERE judul_buku = 'Sistem Jaringan';
+
+   -- ROLLBACK TO SAVEPOINT savepoint_1;
+
+    COMMIT;
+
+    --ROLLBACK TO SAVEPOINT savepoint_2;
+
+END;
+
+
+SELECT * FROM Buku_Azka_10122251;
