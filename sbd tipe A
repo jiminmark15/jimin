@@ -1,0 +1,160 @@
+/*
+1. Jelaskan apa perbedaan complex view dan simple view
+JAWAB =
+====Simple VIEW====
+Merupakan VIEW standar yang dibangun dari satu tabel atau beberapa tabel yang terhubung dengan JOIN. 
+Simple VIEW hanya menampilkan kolom tertentu dari tabel sumber yang diperlukan.
+
+=====Complex VIEW=====
+Merupakan VIEW yang dibangun dari satu atau lebih tabel dengan menggunakan subquery atau fungsi agregat. 
+Complex VIEW lebih fleksibel dan mampu melakukan operasi yang lebih kompleks daripada simple VIEW.
+*/
+
+
+/*2. Buatlah dua tabel berikut dalam oracle! 
+
+Table Buku
+ ---------------------------------------------------------------------------
+|Book_ID (PK) | Judul                | Penulis       | Genre     |  Harga   |
+|------------ |----------------------|---------------|-----------|----------|
+| 101         | The Great Gatsby     | F. Scott      | Fiction   | 100.000  |
+| 201         | Harry Potter         | J.K. Rowling  | Fantasy   | 200.000  |
+| 103         | To Kill a Mockingbird| Harper Lee    | Fiction   | 180.000  |
+| 404         | 1984                 | George Orwell | Dystopian | 120.000  |
+----------------------------------------------------------------------------
+*/
+CREATE TABLE Buku(  --membuat table dengan nama Buku
+Book_ID VARCHAR(3) PRIMARY KEY, --membuat field dengan nama Book_ID dengan tipe VARCHAR panjang nya 3, dan menggunakan key uniq yaitu primary key
+Judul VARCHAR(30),    --membuat field Judul dengan tipe varchar panjang karakter 30
+Penulis VARCHAR(15),  --membuat field penulis dengan tipe varchar panjang karakter 15
+Genre VARCHAR(10),    --membuat field Genre dengan tipe varchar panjang karakter 10
+Harga DECIMAL(10,2)   --membuat field Harga dengan tipe desimal yaitu panjang total 10 digit dan 2 untuk angka setelah koma
+);
+
+INSERT INTO Buku(Book_ID, Judul, Penulis, Genre, Harga) VALUES('101','The Great Gatsby','F. Scott','Fiction',100000);
+--Memasukkan data ke dalam table buku pada field Book_ID, Judul, Penulis, Genre, Harga dengan nilai '101','The Great Gatsby','F. Scott','Fiction',100000
+INSERT INTO Buku(Book_ID, Judul, Penulis, Genre, Harga) VALUES('201','Harry Potter',' J.K. Rowling','Fantasy',200000);
+--Memasukkan data ke dalam table buku pada field Book_ID, Judul, Penulis, Genre, Harga dengan nilai '201','Harry Potter',' J.K. Rowling','Fantasy',200000
+INSERT INTO Buku(Book_ID, Judul, Penulis, Genre, Harga) VALUES('103','To Kill a Mockingbir','Harper Lee','Fiction',180000);
+--Memasukkan data ke dalam table buku pada field Book_ID, Judul, Penulis, Genre, Harga dengan nilai '103','To Kill a Mockingbir','Harper Lee','Fiction',180000
+INSERT INTO Buku(Book_ID, Judul, Penulis, Genre, Harga) VALUES('404','1984','George Orwell','Dystopian',120000);
+--Memasukkan data ke dalam table buku pada field Book_ID, Judul, Penulis, Genre, Harga dengan nilai '404','1984','George Orwell','Dystopian',120000
+
+select * from Buku; -- untuk menampilkan data buku
+/*
+Table Inventory
+ -----------------------------------
+|Invent_ID (PK)|Book_ID (FK)| Stok  | 
+|--------------|------------|-------|
+| 113          | 103        | 10    |
+| 111          | 101        | 15    |
+| 211          | 201        | 8     |
+| 414          | 404        | 9     |
+------------------------------------
+- Jadikan kolom Book_ID dan Invent_ID sebagai PRIMARY KEY (PK) dan 
+kolom Book_ID pada table Inventory menjadi FOREIGN KEY (FK)
+- Buatlah sebuah view dengan nama v_inventory_npm yang menampilkan 
+judul buku, penulis, genre, harga, dan stok. 
+*/
+CREATE TABLE Inventory( --membuat table inventory
+Invent_ID VARCHAR(3) PRIMARY KEY, --membuat field Invent_ID dengan tipe VARCHAR panjang 3 karakter dan key primary
+Book_ID VARCHAR(3), -- membuat field Book_ID dengan tipe VARCHAR panjang 3 karakter
+Stok INT, -- membuat field stok dengan tipe integer
+FOREIGN KEY (Book_ID) REFERENCES Buku(Book_ID) -- lalu membuat field book_id menjadi foreign key berdasarkan field book_id yang ada di table buku
+);
+
+INSERT INTO Inventory (Invent_ID, Book_ID, Stok) VALUES(113, 103, 10);
+--memasukkan data ke table inventory pada field invent_id, book_id, stok dengan values 113, 103, 10
+INSERT INTO Inventory (Invent_ID, Book_ID, Stok) VALUES(111, 101, 15);
+--memasukkan data ke table inventory pada field invent_id, book_id, stok dengan values 111, 101, 15
+INSERT INTO Inventory (Invent_ID, Book_ID, Stok) VALUES(211, 201, 8);
+--memasukkan data ke table inventory pada field invent_id, book_id, stok dengan values 211, 201, 8
+INSERT INTO Inventory (Invent_ID, Book_ID, Stok) VALUES(414, 404, 9);
+--memasukkan data ke table inventory pada field invent_id, book_id, stok dengan values 414, 404, 9
+
+CREATE VIEW v_inventory_npm AS --membuat view dengan nama v_inventory_npm
+SELECT B.Judul, B.Penulis, B.Genre, B.Harga,I.Stok -- untuk menampilkan judul, penulis, gebter, harga dari table buku. dan stok dari table inventory
+FROM Buku -- ambil data dari buku 
+JOIN Inventory I ON B.Book_ID = I.Book_ID; --lalu di gabungkan ke dalam inventory
+
+select * from v_inventory_npm; --untuk menampilkan view v_inventory_npm
+
+
+/*3. Labsi membuka pendaftaran asisten baru dengan kapasistas 12 orang, 
+setiap mahasiswa yang ingin mendaftar wajib memasukkan data berupa id NAMA, NPM, Semester, dan IPK. 
+mahasiswa yang mendaftar adalah 12 orang, setelah data sudah dimasukkan semua ada 3 orang mengundurkan diri yaitu zahra, saskya, putri. 
+Dari 9 mahasiswa ini akan diseleksi lagi dengan kriteria IPK harus lebih dari 3.5 dan semester harus diatas 2, buatkan database untuk mengatur pendaftaran pada labsi
+
+berikut data mahasiswa yang mendaftar
+ ---------------------------------------------------------------------------------------------------------------
+|ID             | Nama			| NPM			| Semester		| IPK			|
+|---------------------------------------------------------------------------------------------------------------|
+|1              |bayu			| 10121301		| 4			| 3.2			|
+|2              |putra			| 10121302		| 2			| 3.7			|
+|3              |rihana			| 10121303		| 3			| 3.8			|
+|4              |gilang			| 10121304		| 1			| 3.1			|
+|5              |maulana		| 10121305		| 2			| 3.2			|
+|6              |richard		| 10121306		| 5			| 3.5			|
+|7              |alfira			| 10121307		| 6			| 3.0			|
+|8              |hakim			| 10121308		| 3			| 3.4			|
+|9              |rozan			| 10121309		| 4			| 3.3			|
+|10             |putri			| 10121310		| 4			| 3.9			|
+|11             |saskya			| 10121311		| 2			| 3.8			|
+|12             |zahra			| 10121312		| 5			| 3.1			|
+ ---------------------------------------------------------------------------------------------------------------
+
+ketentuan:
+buat user dengan nama (Nama_NPM),
+buat table dengan nama (Ujian_nama),
+masukkan 12 data mahasiswa diatas,
+gunakan savepoin dengan nama save1 untuk kembali ke data no 9 sebelum kalian masukkan data putri, saskya, zahra,
+munculkan data untuk melihat mahasiswa dengan IPK diatas 3.5 dan semester diatas 2
+
+*/
+
+CREATE TABLE Ujian_nama ( --membuat table Ujian_nama
+ID INT PRIMARY KEY, --membuat field ID dengan tipe INT key nya primary key
+Nama VARCHAR(15), --membuat field nama dengan tipe VARCHAR panjang 15 karakter
+NPM VARCHAR(10), --membuat field npm dengan tipe VARCHAR panjang 10 karakter
+Semester INT, --membuat field Semester dengan tipe INT
+IPK DECIMAL(3, 1) --membuat field IPK dengan tipe decimal
+);
+
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(1, 'bayu', '10121301', 4, 3.2);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(2, 'putra', '10121302', 2, 3.7);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(3, 'rihana', '10121303', 3, 3.8);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(4, 'gilang', '10121304', 1, 3.1);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(5, 'maulana', '10121305', 2, 3.2);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(6, 'richard', '10121306', 5, 3.5);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(7, 'alfira', '10121307', 6, 3.0);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(8, 'hakim', '10121308', 3, 3.4);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(9, 'rozan', '10121309', 4, 3.3);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+
+SAVEPOINT save1;
+--membuat savepoint save1 untuk mengsave data point agar bisa balik lagi
+
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(10, 'putri', '10121310', 4, 3.9);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(11, 'saskya', '10121311', 2, 3.8);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+INSERT INTO Ujian_nama (ID, Nama, NPM, Semester, IPK) VALUES(12, 'zahra', '10121312', 5, 3.1);
+--Memasukkan data ID, Nama, NPM, Semester, IPK ke dalam tabel Ujian_nama
+
+--setelah data sudah dimasukkan semua ada 3 orang mengundurkan diri yaitu zahra, saskya, putri.
+ROLLBACK TO SAVEPOINT save1;--karena ada yang mengundurkan diri, maka kita akan balik ke data savepoint
+
+select * from Ujian_nama; --untuk menampilkan data pada table ujian_nama
+
+
+--munculkan data untuk melihat mahasiswa dengan IPK diatas 3.5 dan semester diatas 2
+SELECT * FROM Ujian_nama WHERE Semester > 2 AND IPK > 3.5; --
+--untuk menampilkan data pada tabel ujian_nama yang semester nya diatas 2 dan ipk diatas 3.5
