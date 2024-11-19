@@ -1,0 +1,164 @@
+gua tipe A ada 3 nomer
+1. pengertian struktur kondisi, trs macem2nya apa
+2. buat array multi yg isinya nama, npm, kelas
+3. buat percabangan buat nilai skor
+
+JAWABAN : 
+
+/*SOAL 1
+pengertian struktur kondisi, trs macem2nya apa*/
+-- JAWAB -- 
+/* 
+Struktur kondisi dalam pemrograman adalah cara untuk menentukan jalannya eksekusi program berdasarkan kondisi tertentu. 
+Dengan menggunakan struktur ini, program dapat mengambil keputusan dan menjalankan bagian kode yang berbeda tergantung pada 
+hasil evaluasi dari kondisi yang diberikan.
+
+--- Macam-Macam Struktur Kondisi---
+1.  Struktur Kondisi If
+Menggunakan pernyataan if untuk mengevaluasi sebuah kondisi.
+Jika kondisi tersebut benar (true), maka pernyataan di dalam blok if akan dieksekusi.
+2.  Struktur Kondisi If...else
+Menyediakan dua jalur eksekusi: satu untuk ketika kondisi benar dan satu lagi untuk ketika kondisi salah.
+3.  Struktur Kondisi Ternary ( ? : )
+Merupakan bentuk singkat dari if...else, digunakan untuk mengevaluasi kondisi yang memiliki dua kemungkinan.
+4.  Struktur Kondisi Switch...Case
+Digunakan untuk mengevaluasi sebuah variabel terhadap beberapa nilai yang mungkin.
+Sangat berguna ketika ada banyak kemungkinan nilai yang harus diperiksa.
+*/
+
+/*SOAL 2
+pengertian struktur kondisi, trs macem2nya apa*/
+-- JAWAB -- 
+/* 
+--- INPUT---
+<?php
+$mahasiswa = [
+    [
+        "nama" => "justin",
+        "npm" => "123456",
+        "kelas" => "3KA01"
+    ],
+    [
+        "nama" => "celsi",
+        "npm" => "123457",
+        "kelas" => "3KA20"
+    ],
+    [
+        "nama" => "rere",
+        "npm" => "123458",
+        "kelas" => "3KA17"
+    ]
+];
+
+// Menampilkan data mahasiswa
+foreach ($mahasiswa as $mhs) {
+    echo "Nama: " . $mhs['nama'] . ", NPM: " . $mhs['npm'] . ", Kelas: " . $mhs['kelas'] . "<br>";
+}
+?>
+
+--- OUTPUT --- 
+Nama: justin, NPM: 123456, Kelas: 3KA01
+Nama: celsi, NPM: 123457, Kelas: 3KA20
+Nama: rere, NPM: 123458, Kelas: 3KA17
+
+--- LOGIKA PEMROGRAMAN --- 
+1. Deklarasi Array Multi Dimensi
+
+- Variabel $mahasiswa: Ini adalah sebuah array yang berisi beberapa elemen. Setiap elemen dalam array ini adalah array asosiatif yang menyimpan informasi tentang mahasiswa.
+Array Asosiatif: Setiap mahasiswa diwakili oleh array asosiatif yang memiliki tiga kunci:
+"nama": Menyimpan nama mahasiswa.
+"npm": Menyimpan Nomor Pokok Mahasiswa (NPM).
+"kelas": Menyimpan kelas mahasiswa.
+
+- Contoh Data Mahasiswa
+Mahasiswa pertama:
+Nama: Justin
+NPM: 123456
+Kelas: 3KA01
+Mahasiswa kedua:
+Nama: Celsi
+NPM: 123457
+Kelas: 3KA20
+Mahasiswa ketiga:
+Nama: Rere
+NPM: 123458
+Kelas: 3KA17
+
+- Menampilkan Data Mahasiswa
+2. Looping Menggunakan foreach
+foreach: Ini adalah struktur kontrol yang digunakan untuk iterasi melalui setiap elemen dalam array $mahasiswa.
+Variabel $mhs: Dalam setiap iterasi, $mhs akan berisi satu elemen dari array $mahasiswa, yaitu satu array asosiatif yang merepresentasikan satu mahasiswa.
+3. Menampilkan Informasi
+echo: Digunakan untuk mencetak informasi ke layar.
+Dalam setiap iterasi, program mencetak:
+Nama mahasiswa ($mhs['nama'])
+NPM mahasiswa ($mhs['npm'])
+Kelas mahasiswa ($mhs['kelas'])
+<br>: Digunakan untuk memberikan jeda baris di HTML, sehingga setiap output akan ditampilkan di baris baru.
+
+/*SOAL 3
+Jelaskan apa yang dimaksud dengan grant and revoke? dan perintah apa saja yang
+dapat kita gunakan pada gran and revoke? berikan contohnya*/
+-- JAWAB -- 
+/* 
+--- INPUT ---
+<?php
+$mahasiswa = [
+    [
+        "nama" => "justin",
+        "npm" => "123456",
+        "kelas" => "3KA01",
+        "skor" => 85 // Tambahkan skor
+    ],
+    [
+        "nama" => "celsi",
+        "npm" => "123457",
+        "kelas" => "3KA20",
+        "skor" => 75 // Tambahkan skor
+    ],
+    [
+        "nama" => "rere",
+        "npm" => "123458",
+        "kelas" => "3KA17",
+        "skor" => 55 // Tambahkan skor
+    ]
+];
+
+// Menampilkan data mahasiswa dengan kategori nilai
+foreach ($mahasiswa as $mhs) {
+    // Menentukan kategori nilai berdasarkan skor
+    if ($mhs['skor'] > 80) {
+        $kategori = "Baik";
+    } elseif ($mhs['skor'] >= 60) {
+        $kategori = "Cukup";
+    } else {
+        $kategori = "Kurang";
+    }
+
+    // Menampilkan informasi mahasiswa
+    echo "Nama: " . $mhs['nama'] . ", NPM: " . $mhs['npm'] . ", Kelas: " . $mhs['kelas'] . ", Skor: " . $mhs['skor'] . ", Kategori: " . $kategori . "<br>";
+}
+?>
+
+--- OUTPUT --- 
+Nama: justin, NPM: 123456, Kelas: 3KA01, Skor: 85, Kategori: Baik
+Nama: celsi, NPM: 123457, Kelas: 3KA20, Skor: 75, Kategori: Cukup
+Nama: rere, NPM: 123458, Kelas: 3KA17, Skor: 55, Kategori: Kurang
+
+--- LOGIKA PEMROGRAMAN --- 
+Menambahkan Skor:
+Setiap mahasiswa memiliki kunci "skor" yang menyimpan nilai mereka.
+Percabangan if...elseif...else:
+if ($mhs['skor'] >= 85): Jika skor lebih besar atau sama dengan 85, maka kategori ditetapkan sebagai "A".
+elseif ($mhs['skor'] >= 70): Jika skor berada di antara 70 dan 84, maka kategori ditetapkan sebagai "B".
+elseif ($mhs['skor'] >= 60): Jika skor berada di antara 60 dan 69, maka kategori ditetapkan sebagai "C".
+elseif ($mhs['skor'] >= 50): Jika skor berada di antara 50 dan 59, maka kategori ditetapkan sebagai "D".
+else: Jika skor kurang dari 50, maka kategori ditetapkan sebagai "E".
+Menampilkan Data:
+Dalam loop foreach, setelah menentukan kategori, program mencetak semua informasi mahasiswa termasuk nama, NPM, kelas, skor, dan kategori.
+
+--- Kesimpulan ---
+Dengan menggunakan percabangan ini, Kita dapat mengkategorikan nilai mahasiswa ke dalam tingkatan yang lebih terstruktur. 
+
+
+
