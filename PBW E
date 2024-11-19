@@ -85,8 +85,71 @@ Output yang Dihasilkan:
 Setelah melakukan perulangan untuk setiap karyawan, program akan menampilkan hasilnya dalam format yang lebih mudah dibaca, dengan masing-masing rincian karyawan yang terpisah.
 
 --- SOAL 3 ---
-DISKON 
+DISKON ( contoh)
 --- JAWABAN --
-- INPUT - 
+--- INPUT ---
+<?php
+$barang = "Laptop";
+$harga = 0;
+$diskon = 0;
+
+// Menentukan harga barang
+if ($barang == "Laptop") {
+    $harga = 10000000; // Harga Laptop
+} elseif ($barang == "HP") {
+    $harga = 3000000; // Harga HP
+} elseif ($barang == "Tablet") {
+    $harga = 5000000; // Harga Tablet
+} else {
+    echo "Barang tidak tersedia.";
+    exit; // Menghentikan eksekusi jika barang tidak ditemukan
+}
+
+// Menentukan diskon
+if ($harga >= 5000000) {
+    $diskon = 0.10; // Diskon 10% untuk barang >= 5 juta
+} elseif ($harga >= 3000000) {
+    $diskon = 0.05; // Diskon 5% untuk barang >= 3 juta
+}
+
+// Menghitung total harga setelah diskon
+$potongan = $harga * $diskon;
+$total = $harga - $potongan;
+
+echo "Barang: $barang\n";
+echo "Harga Awal: Rp " . number_format($harga, 0, ",", ".") . "\n";
+echo "Diskon: Rp " . number_format($potongan, 0, ",", ".") . "\n";
+echo "Harga Setelah Diskon: Rp " . number_format($total, 0, ",", ".");
+?>
+
+--- OUTPUT ---
+Barang: Laptop Harga Awal: Rp 10.000.000 Diskon: Rp 1.000.000 Harga Setelah Diskon: Rp 9.000.000
+
+--- LOGIKA PEMROGRAMAN ---
+1. Deklarasi Variabel:
+- $barang: Menyimpan nama barang yang akan diproses (misalnya "Laptop", "HP", atau "Tablet").
+- $harga: Menyimpan harga barang berdasarkan nama barang yang dipilih.
+- $diskon: Menyimpan nilai diskon yang diterapkan berdasarkan harga barang.
+
+2. Menentukan Harga Barang:
+- if-else digunakan untuk mengecek nama barang dan menetapkan harga yang sesuai.
+- Jika barang yang dimasukkan adalah "Laptop", maka harga adalah 10 juta.
+- Jika barang adalah "HP", maka harga adalah 3 juta.
+- Jika barang adalah "Tablet", maka harga adalah 5 juta.
+-Jika barang tidak sesuai dengan pilihan yang ada, program akan mengeluarkan pesan "Barang tidak tersedia" dan menghentikan eksekusi dengan exit().
+
+3. Menentukan Diskon:
+- Diskon 10% diberikan untuk barang yang harga awalnya lebih dari atau sama dengan 5 juta (misalnya Laptop dan Tablet).
+- Diskon 5% diberikan untuk barang yang harga awalnya lebih dari atau sama dengan 3 juta (misalnya HP).
+- Diskon ditentukan menggunakan if-else berdasarkan harga barang.
+
+4. Menghitung Potongan dan Total:
+- Potongan dihitung berdasarkan diskon yang diterapkan: potongan = harga * diskon.
+- Total harga setelah diskon dihitung dengan cara mengurangi harga awal dengan potongan: total = harga - potongan.
+
+Output:
+Menampilkan nama barang, harga awal, diskon yang diterima, dan harga setelah diskon dengan format mata uang yang lebih mudah dibaca menggunakan number_format().
+
+
 
 
