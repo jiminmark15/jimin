@@ -27,7 +27,7 @@ Sangat berguna ketika ada banyak kemungkinan nilai yang harus diperiksa.
 */
 
 /*SOAL 2
-pengertian struktur kondisi, trs macem2nya apa*/
+ buat array multi yg isinya nama, npm, kelas
 -- JAWAB -- 
 /* 
 --- INPUT---
@@ -75,10 +75,12 @@ Mahasiswa pertama:
 Nama: Justin
 NPM: 123456
 Kelas: 3KA01
+
 Mahasiswa kedua:
 Nama: Celsi
 NPM: 123457
 Kelas: 3KA20
+
 Mahasiswa ketiga:
 Nama: Rere
 NPM: 123458
@@ -97,8 +99,7 @@ Kelas mahasiswa ($mhs['kelas'])
 <br>: Digunakan untuk memberikan jeda baris di HTML, sehingga setiap output akan ditampilkan di baris baru.
 
 /*SOAL 3
-Jelaskan apa yang dimaksud dengan grant and revoke? dan perintah apa saja yang
-dapat kita gunakan pada gran and revoke? berikan contohnya*/
+buat percabangan buat nilai skor
 -- JAWAB -- 
 /* 
 --- INPUT ---
