@@ -1,0 +1,176 @@
+tipe B
+1. sebutkan dan jelaskan 4 struktur perulangan
+2. membuat perulangan dengan bil genap dimulai 40 = 10 secara terbalik
+3. yg kek total gt dari barang yg dibeli
+
+
+/*SOAL 1
+sebutkan dan jelaskan 4 struktur perulangan
+*/
+--- JAWAB --- 
+/* 
+Dalam pemrograman, struktur perulangan (looping) adalah instruksi yang digunakan untuk mengeksekusi blok kode secara berulang selama kondisi tertentu terpenuhi. 
+Dalam PHP, terdapat empat jenis struktur perulangan yang umum digunakan, yaitu for, while, do...while, dan foreach. Berikut adalah penjelasan detail mengenai 
+masing-masing struktur perulangan tersebut.
+
+1. Struktur Perulangan For
+- Pengertian -
+Perulangan for adalah jenis perulangan yang digunakan ketika jumlah iterasi sudah diketahui sebelumnya. Ini adalah counted loop,
+di mana kita menentukan berapa kali perulangan akan dilakukan.
+for (initialization; condition; increment) {
+    // kode yang akan diulang
+}
+Initialization: Menetapkan variabel awal (counter).
+Condition: Menentukan kondisi yang harus dipenuhi agar perulangan terus berjalan.
+Increment: Menentukan bagaimana counter akan diperbarui setelah setiap iterasi.
+
+2. Struktur Perulangan While
+- Pengertian -
+Perulangan while digunakan ketika jumlah iterasi tidak diketahui dan bergantung pada kondisi tertentu. Ini adalah uncounted loop,
+di mana perulangan akan terus berlangsung selama kondisi bernilai true.
+while (condition) {
+    // kode yang akan diulang
+}
+Condition: Diperiksa sebelum setiap iterasi; jika true, blok kode dieksekusi.
+
+3. Struktur Perulangan Do...While
+- Pengertian -
+Perulangan do...while mirip dengan while, tetapi dengan satu perbedaan penting: blok kode dieksekusi setidaknya sekali sebelum kondisi diperiksa. 
+Ini memastikan bahwa pernyataan dalam blok do dijalankan setidaknya satu kali.
+do {
+    // kode yang akan diulang
+} while (condition);
+Condition: Diperiksa setelah setiap iterasi; jika true, perulangan dilanjutkan.
+
+4. Struktur Perulangan Foreach
+- Pengertian -
+Perulangan foreach khusus digunakan untuk mengiterasi elemen dalam array. Ini sangat berguna untuk mengakses setiap 
+elemen dalam array tanpa perlu menggunakan indeks.
+foreach ($array as $value) {
+    // kode yang akan diulang untuk setiap elemen
+}
+atau untuk array asosiatif:
+foreach ($array as $key => $value) {
+    // kode yang akan diulang untuk setiap pasangan key-value
+}
+Kesimpulan
+Keempat jenis struktur perulangan ini memiliki kegunaan masing-masing tergantung pada kebutuhan program:
+For Loop: Digunakan ketika jumlah iterasi sudah diketahui.
+While Loop: Digunakan ketika jumlah iterasi tidak diketahui dan tergantung pada kondisi.
+Do...While Loop: Memastikan bahwa blok kode dijalankan setidaknya sekali.
+Foreach Loop: Khusus untuk mengiterasi elemen dalam array dengan cara yang lebih sederhana dan efisien.
+
+/*SOAL 2
+membuat perulangan dengan bil genap dimulai 40 = 10 secara terbalik
+*/
+--- JAWAB --- 
+/* 
+--- INPUT ---
+<?php
+// Fungsi untuk mencetak bilangan genap dari 40 hingga 10 secara terbalik
+function cetakGenapTerbalik() {
+    for ($bil = 40; $bil >= 10; $bil -= 2) { // Loop dengan decrement 2 untuk memilih bilangan genap
+        echo "$bil ";
+    }
+}
+
+// Panggil fungsi cetakGenapTerbalik()
+cetakGenapTerbalik();
+?>
+
+--- OUTPUT ---
+40 38 36 34 32 30 28 26 24 22 20 18 16 14 12 10
+
+--- LOGIKA PEMROGRAMAN ---
+1. Fungsi Cetak Genap Terbalik (cetakGenapTerbalik)
+Ini adalah fungsi yang akan mencetak bilangan genap dari 40 hingga 10 secara terbalik.
+2. Loop For
+- for ($bil = 40; $bil >= 10; $bil -= 2)
+- Awal: $bil dimulai dari 40.
+- Syarat: Bilangan harus kurang atau sama dengan 10.
+- Increment/decrement: Bilangan dimininuskan sebanyak 2 setiap iterasi untuk memastikan bahwa hanya bilangan genap saja yang dicetak.
+3. Output Bilangan Genap
+echo "$bil "; // Output bilangan genap di layar.
+
+/*SOAL 3 
+yg kek total gt dari barang yg dibeli (CTH GINI)
+*/
+--- JAWAB --- 
+/* 
+--- INPUT ---
+<?php
+// Mendefinisikan array barang dengan harga dan jumlah yang sudah ditentukan
+$barang = [
+    [
+        "nama" => "Buku",
+        "harga" => 50000, // Harga per buku
+        "jumlah" => 3 // Jumlah buku yang dibeli
+    ],
+    [
+        "nama" => "Pulpen",
+        "harga" => 20000, // Harga per pulpen
+        "jumlah" => 5 // Jumlah pulpen yang dibeli
+    ]
+];
+
+// Fungsi untuk menghitung total harga
+function hitungTotal($barang) {
+    $total = 0; // Inisialisasi total
+    foreach ($barang as $item) {
+        $total += $item['harga'] * $item['jumlah']; // Menghitung total per item
+    }
+    return $total; // Mengembalikan total keseluruhan
+}
+
+// Menghitung total harga
+$total_harga = hitungTotal($barang);
+
+// Menampilkan hasil
+echo "\nRincian Pembelian:\n";
+foreach ($barang as $item) {
+    if ($item['jumlah'] > 0) { // Hanya menampilkan jika jumlah lebih dari 0
+        echo "{$item['jumlah']} x {$item['nama']} @ Rp. " . number_format($item['harga'], 0, ',', '.') . " = Rp. " . number_format($item['harga'] * $item['jumlah'], 0, ',', '.') . "\n";
+    }
+}
+echo "-----------------------------------\n";
+echo "Total Pembelian: Rp. " . number_format($total_harga, 0, ',', '.') . "\n";
+?>
+
+--- OUTPUT ---
+Rincian Pembelian: 3 x Buku @ Rp. 50.000 = Rp. 150.000 5 x Pulpen @ Rp. 20.000 = Rp. 100.000 ----------------------------------- Total Pembelian: Rp. 250.000
+
+--- LOGIKA PEMROGRAMAN ---
+1. Mendefinisikan Array Barang
+- Di sini, kita mendefinisikan sebuah array $barang yang berisi dua item: Buku dan Pulpen.
+- Setiap item adalah array asosiatif yang menyimpan informasi tentang nama barang, harga per unit, dan jumlah yang dibeli.
+- Dengan cara ini, kita dapat dengan mudah mengelola informasi tentang berbagai barang dalam satu struktur data.
+2. Fungsi untuk Menghitung Total Harga
+- Fungsi hitungTotal menerima parameter $barang, yang merupakan array dari barang-barang yang telah didefinisikan sebelumnya.
+- Di dalam fungsi, kita menginisialisasi variabel $total dengan nilai 0.
+- Menggunakan loop foreach, kita iterasi melalui setiap item dalam array $barang.
+- Untuk setiap item, kita menghitung total harga dengan mengalikan harga dengan jumlah, dan menambahkan hasilnya ke variabel $total.
+- Setelah semua item dihitung, fungsi mengembalikan nilai total sebagai output.
+3. Menghitung Total Harga
+- Di sini, kita memanggil fungsi hitungTotal dan menyimpan hasilnya dalam variabel $total_harga.
+- Ini memberikan kita total harga semua barang berdasarkan jumlah dan harga masing-masing.
+4. Menampilkan Hasil
+- Menampilkan Rincian Pembelian:
+a. Pertama, program mencetak header untuk rincian pembelian.
+b. Kemudian menggunakan loop foreach lagi untuk iterasi melalui setiap item dalam array $barang.
+c. Dengan menggunakan pernyataan if, program memeriksa apakah jumlah lebih dari 0 sebelum menampilkan rincian.
+d. Untuk setiap item yang memenuhi syarat, program mencetak jumlah, nama barang, harga per unit (diformat dengan number_format() untuk memudahkan pembacaan), dan total harga untuk item tersebut (juga diformat).
+- Menampilkan Total Pembelian:
+a. Setelah mencetak rincian untuk semua barang, program mencetak garis pemisah.
+b. Terakhir, program mencetak total pembelian keseluruhan menggunakan nilai yang telah dihitung sebelumnya.
+
+-- Kesimpulan --
+- Program ini secara keseluruhan mengikuti logika pemrograman yang jelas dan terstruktur:
+- Pengorganisasian Data: Menggunakan array untuk menyimpan informasi tentang barang.
+- Fungsi Modular: Memisahkan logika perhitungan total harga ke dalam fungsi terpisah untuk meningkatkan keterbacaan dan pemeliharaan kode.
+- Iterasi dan Seleksi: Menggunakan loop untuk iterasi melalui data dan kondisi untuk memfilter output yang relevan.
+- Format Output: Menggunakan format angka untuk membuat output lebih mudah dibaca oleh pengguna.
+
+
+
+
+
