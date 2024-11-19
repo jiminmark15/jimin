@@ -5,60 +5,106 @@ tipe B
 
 
 /*SOAL 1
-sebutkan dan jelaskan 4 struktur perulangan
+sebutkan dan jelaskan 4 struktur  PHP 
 */
 --- JAWAB --- 
 /* 
-Dalam pemrograman, struktur perulangan (looping) adalah instruksi yang digunakan untuk mengeksekusi blok kode secara berulang selama kondisi tertentu terpenuhi. 
-Dalam PHP, terdapat empat jenis struktur perulangan yang umum digunakan, yaitu for, while, do...while, dan foreach. Berikut adalah penjelasan detail mengenai 
-masing-masing struktur perulangan tersebut.
+Dalam PHP, terdapat beberapa struktur kontrol yang digunakan untuk mengatur alur eksekusi program. Berikut adalah penjelasan lengkap mengenai empat struktur kontrol utama dalam PHP: if...else, switch, for, dan foreach.
 
-1. Struktur Perulangan For
-- Pengertian -
-Perulangan for adalah jenis perulangan yang digunakan ketika jumlah iterasi sudah diketahui sebelumnya. Ini adalah counted loop,
-di mana kita menentukan berapa kali perulangan akan dilakukan.
-for (initialization; condition; increment) {
-    // kode yang akan diulang
-}
-Initialization: Menetapkan variabel awal (counter).
-Condition: Menentukan kondisi yang harus dipenuhi agar perulangan terus berjalan.
-Increment: Menentukan bagaimana counter akan diperbarui setelah setiap iterasi.
+1. Struktur If-Else
+Pengertian : 
+Struktur if-else digunakan untuk melakukan percabangan dalam program. Ini memungkinkan program untuk mengambil keputusan berdasarkan kondisi tertentu.
 
-2. Struktur Perulangan While
-- Pengertian -
-Perulangan while digunakan ketika jumlah iterasi tidak diketahui dan bergantung pada kondisi tertentu. Ini adalah uncounted loop,
-di mana perulangan akan terus berlangsung selama kondisi bernilai true.
-while (condition) {
-    // kode yang akan diulang
+if (kondisi) {
+    // Kode yang dijalankan jika kondisi true
+} else {
+    // Kode yang dijalankan jika kondisi false
 }
-Condition: Diperiksa sebelum setiap iterasi; jika true, blok kode dieksekusi.
 
-3. Struktur Perulangan Do...While
-- Pengertian -
-Perulangan do...while mirip dengan while, tetapi dengan satu perbedaan penting: blok kode dieksekusi setidaknya sekali sebelum kondisi diperiksa. 
-Ini memastikan bahwa pernyataan dalam blok do dijalankan setidaknya satu kali.
-do {
-    // kode yang akan diulang
-} while (condition);
-Condition: Diperiksa setelah setiap iterasi; jika true, perulangan dilanjutkan.
+Contoh : 
+$nilai = 75;
 
-4. Struktur Perulangan Foreach
-- Pengertian -
-Perulangan foreach khusus digunakan untuk mengiterasi elemen dalam array. Ini sangat berguna untuk mengakses setiap 
-elemen dalam array tanpa perlu menggunakan indeks.
-foreach ($array as $value) {
-    // kode yang akan diulang untuk setiap elemen
+if ($nilai >= 60) {
+    echo "Anda Lulus.";
+} else {
+    echo "Anda Tidak Lulus.";
 }
-atau untuk array asosiatif:
-foreach ($array as $key => $value) {
-    // kode yang akan diulang untuk setiap pasangan key-value
+
+Penjelasan
+Program memeriksa nilai. Jika nilai lebih besar atau sama dengan 60, maka output "Anda Lulus." ditampilkan. Jika tidak, output "Anda Tidak Lulus." ditampilkan.
+Ini menunjukkan bagaimana program dapat membuat keputusan berdasarkan input.
+
+2. Struktur Switch
+Pengertian : 
+Struktur switch digunakan untuk memilih salah satu dari banyak blok kode yang akan dieksekusi berdasarkan nilai dari sebuah variabel atau ekspresi.
+switch (ekspresi) {
+    case nilai1:
+        // Kode yang dijalankan jika ekspresi sama dengan nilai1
+        break;
+    case nilai2:
+        // Kode yang dijalankan jika ekspresi sama dengan nilai2
+        break;
+    default:
+        // Kode yang dijalankan jika tidak ada case yang cocok
 }
-Kesimpulan
-Keempat jenis struktur perulangan ini memiliki kegunaan masing-masing tergantung pada kebutuhan program:
-For Loop: Digunakan ketika jumlah iterasi sudah diketahui.
-While Loop: Digunakan ketika jumlah iterasi tidak diketahui dan tergantung pada kondisi.
-Do...While Loop: Memastikan bahwa blok kode dijalankan setidaknya sekali.
-Foreach Loop: Khusus untuk mengiterasi elemen dalam array dengan cara yang lebih sederhana dan efisien.
+
+Contoh : 
+$hari = "Sabtu";
+
+switch ($hari) {
+    case "Sabtu":
+        echo "Ini adalah hari libur.";
+        break;
+    case "Minggu":
+        echo "Ini juga hari libur.";
+        break;
+    default:
+        echo "Ini adalah hari kerja.";
+}
+
+Penjelasan
+Program memeriksa variabel $hari. Jika nilainya "Sabtu", maka output "Ini adalah hari libur." ditampilkan.
+Struktur switch memudahkan pengelompokan beberapa kondisi tanpa perlu menulis banyak if-else.
+
+3. Struktur Looping (For)
+Pengertian : 
+Struktur looping seperti for digunakan untuk menjalankan blok kode berulang kali selama kondisi tertentu terpenuhi.
+
+for (inisialisasi; kondisi; increment) {
+    // Kode yang akan diulang
+}
+
+Contoh : 
+for ($i = 1; $i <= 5; $i++) {
+    echo "Perulangan ke-$i<br>";
+}
+Penjelasan :
+Program menginisialisasi variabel $i dengan 1 dan mengulangi blok kode sampai $i mencapai 5.
+Setiap iterasi, $i ditambahkan 1, dan output menunjukkan nomor perulangan.
+Ini menunjukkan bagaimana kita dapat mengulangi tindakan tanpa menulis kode berulang kali.
+
+4. Struktur Looping (Foreach)
+Pengertian : 
+Struktur foreach digunakan untuk mengiterasi elemen dalam array. Ini sangat berguna ketika Anda ingin melakukan operasi pada setiap elemen array tanpa perlu menggunakan indeks.
+
+foreach ($array as $item) {
+    // Kode yang akan dijalankan untuk setiap item
+}
+
+Contoh : 
+$buah = ["Apel", "Jeruk", "Pisang"];
+
+foreach ($buah as $item) {
+    echo "$item<br>";
+}
+Penjelasan : 
+Program mengiterasi setiap elemen dalam array $buah.
+Setiap elemen dicetak satu per satu tanpa perlu menggunakan indeks.
+Ini membuat kode lebih bersih dan lebih mudah dibaca.
+
+Kesimpulan : 
+Keempat struktur ini—if-else, switch, for, dan foreach—merupakan bagian penting dari pemrograman PHP yang memungkinkan pengembang untuk mengontrol alur eksekusi program dan mengelola data dengan cara yang efisien. Memahami cara kerja masing-masing struktur ini membantu programmer membuat aplikasi yang lebih responsif dan terorganisir dengan baik.
+
 
 /*SOAL 2
 membuat perulangan dengan bil genap dimulai 40 = 10 secara terbalik
@@ -93,82 +139,73 @@ Ini adalah fungsi yang akan mencetak bilangan genap dari 40 hingga 10 secara ter
 echo "$bil "; // Output bilangan genap di layar.
 
 /*SOAL 3 
-yg kek total gt dari barang yg dibeli (CTH GINI)
+Buat daftar belanja yang di beli selanjutnya totalin daftar belanja yang sudah di beli, selanjutnya buat diskon, selanjutnya buat total harga setelah diskon, dan terakhir tampilkan semua dari daftar belanja, total harga, diskon, total (CONTOH)
 */
 --- JAWAB --- 
 /* 
 --- INPUT ---
 <?php
-// Mendefinisikan array barang dengan harga dan jumlah yang sudah ditentukan
-$barang = [
-    [
-        "nama" => "Buku",
-        "harga" => 50000, // Harga per buku
-        "jumlah" => 3 // Jumlah buku yang dibeli
-    ],
-    [
-        "nama" => "Pulpen",
-        "harga" => 20000, // Harga per pulpen
-        "jumlah" => 5 // Jumlah pulpen yang dibeli
-    ]
-];
+$barang = "Laptop";
+$harga = 0;
+$diskon = 0;
 
-// Fungsi untuk menghitung total harga
-function hitungTotal($barang) {
-    $total = 0; // Inisialisasi total
-    foreach ($barang as $item) {
-        $total += $item['harga'] * $item['jumlah']; // Menghitung total per item
-    }
-    return $total; // Mengembalikan total keseluruhan
+// Menentukan harga barang
+if ($barang == "Laptop") {
+    $harga = 10000000; // Harga Laptop
+} elseif ($barang == "HP") {
+    $harga = 3000000; // Harga HP
+} elseif ($barang == "Tablet") {
+    $harga = 5000000; // Harga Tablet
+} else {
+    echo "Barang tidak tersedia.";
+    exit; // Menghentikan eksekusi jika barang tidak ditemukan
 }
 
-// Menghitung total harga
-$total_harga = hitungTotal($barang);
-
-// Menampilkan hasil
-echo "\nRincian Pembelian:\n";
-foreach ($barang as $item) {
-    if ($item['jumlah'] > 0) { // Hanya menampilkan jika jumlah lebih dari 0
-        echo "{$item['jumlah']} x {$item['nama']} @ Rp. " . number_format($item['harga'], 0, ',', '.') . " = Rp. " . number_format($item['harga'] * $item['jumlah'], 0, ',', '.') . "\n";
-    }
+// Menentukan diskon
+if ($harga >= 5000000) {
+    $diskon = 0.10; // Diskon 10% untuk barang >= 5 juta
+} elseif ($harga >= 3000000) {
+    $diskon = 0.05; // Diskon 5% untuk barang >= 3 juta
 }
-echo "-----------------------------------\n";
-echo "Total Pembelian: Rp. " . number_format($total_harga, 0, ',', '.') . "\n";
+
+// Menghitung total harga setelah diskon
+$potongan = $harga * $diskon;
+$total = $harga - $potongan;
+
+echo "Barang: $barang\n";
+echo "Harga Awal: Rp " . number_format($harga, 0, ",", ".") . "\n";
+echo "Diskon: Rp " . number_format($potongan, 0, ",", ".") . "\n";
+echo "Harga Setelah Diskon: Rp " . number_format($total, 0, ",", ".");
 ?>
 
 --- OUTPUT ---
-Rincian Pembelian: 3 x Buku @ Rp. 50.000 = Rp. 150.000 5 x Pulpen @ Rp. 20.000 = Rp. 100.000 ----------------------------------- Total Pembelian: Rp. 250.000
+Barang: Laptop Harga Awal: Rp 10.000.000 Diskon: Rp 1.000.000 Harga Setelah Diskon: Rp 9.000.000
 
 --- LOGIKA PEMROGRAMAN ---
-1. Mendefinisikan Array Barang
-- Di sini, kita mendefinisikan sebuah array $barang yang berisi dua item: Buku dan Pulpen.
-- Setiap item adalah array asosiatif yang menyimpan informasi tentang nama barang, harga per unit, dan jumlah yang dibeli.
-- Dengan cara ini, kita dapat dengan mudah mengelola informasi tentang berbagai barang dalam satu struktur data.
-2. Fungsi untuk Menghitung Total Harga
-- Fungsi hitungTotal menerima parameter $barang, yang merupakan array dari barang-barang yang telah didefinisikan sebelumnya.
-- Di dalam fungsi, kita menginisialisasi variabel $total dengan nilai 0.
-- Menggunakan loop foreach, kita iterasi melalui setiap item dalam array $barang.
-- Untuk setiap item, kita menghitung total harga dengan mengalikan harga dengan jumlah, dan menambahkan hasilnya ke variabel $total.
-- Setelah semua item dihitung, fungsi mengembalikan nilai total sebagai output.
-3. Menghitung Total Harga
-- Di sini, kita memanggil fungsi hitungTotal dan menyimpan hasilnya dalam variabel $total_harga.
-- Ini memberikan kita total harga semua barang berdasarkan jumlah dan harga masing-masing.
-4. Menampilkan Hasil
-- Menampilkan Rincian Pembelian:
-a. Pertama, program mencetak header untuk rincian pembelian.
-b. Kemudian menggunakan loop foreach lagi untuk iterasi melalui setiap item dalam array $barang.
-c. Dengan menggunakan pernyataan if, program memeriksa apakah jumlah lebih dari 0 sebelum menampilkan rincian.
-d. Untuk setiap item yang memenuhi syarat, program mencetak jumlah, nama barang, harga per unit (diformat dengan number_format() untuk memudahkan pembacaan), dan total harga untuk item tersebut (juga diformat).
-- Menampilkan Total Pembelian:
-a. Setelah mencetak rincian untuk semua barang, program mencetak garis pemisah.
-b. Terakhir, program mencetak total pembelian keseluruhan menggunakan nilai yang telah dihitung sebelumnya.
+1. Deklarasi Variabel:
+- $barang: Menyimpan nama barang yang akan diproses (misalnya "Laptop", "HP", atau "Tablet").
+- $harga: Menyimpan harga barang berdasarkan nama barang yang dipilih.
+- $diskon: Menyimpan nilai diskon yang diterapkan berdasarkan harga barang.
 
--- Kesimpulan --
-- Program ini secara keseluruhan mengikuti logika pemrograman yang jelas dan terstruktur:
-- Pengorganisasian Data: Menggunakan array untuk menyimpan informasi tentang barang.
-- Fungsi Modular: Memisahkan logika perhitungan total harga ke dalam fungsi terpisah untuk meningkatkan keterbacaan dan pemeliharaan kode.
-- Iterasi dan Seleksi: Menggunakan loop untuk iterasi melalui data dan kondisi untuk memfilter output yang relevan.
-- Format Output: Menggunakan format angka untuk membuat output lebih mudah dibaca oleh pengguna.
+2. Menentukan Harga Barang:
+- if-else digunakan untuk mengecek nama barang dan menetapkan harga yang sesuai.
+- Jika barang yang dimasukkan adalah "Laptop", maka harga adalah 10 juta.
+- Jika barang adalah "HP", maka harga adalah 3 juta.
+- Jika barang adalah "Tablet", maka harga adalah 5 juta.
+-Jika barang tidak sesuai dengan pilihan yang ada, program akan mengeluarkan pesan "Barang tidak tersedia" dan menghentikan eksekusi dengan exit().
+
+3. Menentukan Diskon:
+- Diskon 10% diberikan untuk barang yang harga awalnya lebih dari atau sama dengan 5 juta (misalnya Laptop dan Tablet).
+- Diskon 5% diberikan untuk barang yang harga awalnya lebih dari atau sama dengan 3 juta (misalnya HP).
+- Diskon ditentukan menggunakan if-else berdasarkan harga barang.
+
+4. Menghitung Potongan dan Total:
+- Potongan dihitung berdasarkan diskon yang diterapkan: potongan = harga * diskon.
+- Total harga setelah diskon dihitung dengan cara mengurangi harga awal dengan potongan: total = harga - potongan.
+
+Output:
+Menampilkan nama barang, harga awal, diskon yang diterima, dan harga setelah diskon dengan format mata uang yang lebih mudah dibaca menggunakan number_format().
+
 
 
 
