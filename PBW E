@@ -1,1 +1,92 @@
+--- SOAL 1 ---
+jelaskan dan pengertian kondisi if, if else, if elseif, sama switch.
+--- JAWABAN --
+1. Struktur If
+Pengertian : 
+Struktur if adalah pernyataan yang memungkinkan program untuk menjalankan blok kode tertentu jika kondisi yang diberikan adalah benar (true).
+Ini adalah dasar dari pengambilan keputusan dalam pemrograman.
+2. Struktur If-Else
+Pengertian :
+Struktur if-else digunakan untuk menjalankan satu blok kode jika kondisi terpenuhi dan blok kode lain jika kondisi tidak terpenuhi.
+Ini memungkinkan pengembang untuk menangani dua kemungkinan hasil dari suatu kondisi.
+3. Struktur If-Elif (Else If)
+Pengertian :
+Struktur if-elseif digunakan untuk menangani beberapa kondisi sekaligus. Ini memungkinkan pengembang untuk menguji beberapa 
+ekspresi dan mengeksekusi blok kode yang sesuai dengan kondisi yang terpenuhi.
+4. Struktur Switch
+Pengertian :
+Struktur switch digunakan untuk memilih satu dari banyak blok kode yang akan dieksekusi berdasarkan nilai dari sebuah variabel atau ekspresi.
+Ini lebih efisien daripada menggunakan banyak if-else ketika ada banyak kondisi yang perlu diperiksa.
+
+Kesimpulan :
+Keempat struktur kontrol ini—if, if-else, if-elseif, dan switch—merupakan alat penting dalam pemrograman PHP. Mereka memungkinkan pengembang untuk mengontrol alur eksekusi
+program berdasarkan berbagai kondisi. Memahami cara kerja masing-masing struktur ini membantu programmer membuat aplikasi yang lebih responsif dan terorganisir dengan baik.
+
+--- SOAL 2 ---
+nama, posisi, sama gaji. Pake perulangan
+--- JAWABAN --
+- INPUT - 
+<?php
+// Mendefinisikan array untuk menyimpan data karyawan
+$karyawan = [
+    [
+        "nama" => "puyi",
+        "posisi" => "Manajer",
+        "gaji" => 15000000 // Gaji dalam format angka
+    ],
+    [
+        "nama" => "wildan",
+        "posisi" => "Staff",
+        "gaji" => 6000000 // Gaji dalam format angka
+    ],
+    [
+        "nama" => "arlan",
+        "posisi" => "Supervisor",
+        "gaji" => 9000000 // Gaji dalam format angka
+    ]
+];
+
+// Menampilkan hasil
+echo "\nRincian Data Karyawan:\n";
+foreach ($karyawan as $index => $data) {
+    echo "Karyawan ke-" . ($index + 1) . ": \n";
+    echo "Nama: " . $data['nama'] . "\n";
+    echo "Posisi: " . $data['posisi'] . "\n";
+    echo "Gaji: Rp. " . number_format($data['gaji'], 0, ',', '.') . "\n";
+    echo "-----------------------------------\n";
+}
+?>
+
+- OUTPUT - 
+Rincian Data Karyawan: Karyawan ke-1: Nama: puyi Posisi: Manajer Gaji: Rp. 15.000.000 ----------------------------------- 
+Karyawan ke-2: Nama: wildan Posisi: Staff Gaji: Rp. 6.000.000 ----------------------------------- 
+Karyawan ke-3: Nama: arlan Posisi: Supervisor Gaji: Rp. 9.000.000 -----------------------------------
+
+- LOGIKA PROGRAM - 
+1. Definisi Array $karyawan:
+- Program dimulai dengan mendefinisikan array $karyawan, yang berisi data karyawan dalam bentuk array asosiatif.
+- Setiap elemen array mewakili satu karyawan, dan setiap karyawan memiliki informasi berikut:
+  nama: Nama karyawan
+  posisi: Posisi pekerjaan karyawan
+  gaji: Gaji karyawan dalam format angka (misalnya, 15.000.000 untuk Manajer, 6.000.000 untuk Staff, dll.).
+
+2. Perulangan foreach:
+- Program kemudian menggunakan foreach untuk melakukan iterasi terhadap array $karyawan. Dalam setiap iterasi, elemen $data berisi data karyawan yang ada pada indeks tersebut.
+- $index digunakan untuk menampilkan urutan karyawan (misalnya, Karyawan ke-1, Karyawan ke-2, dst.).
+
+3. Menampilkan Data Karyawan:
+- Dalam setiap iterasi perulangan, program menampilkan:
+  Nama karyawan
+  Posisi karyawan
+  Gaji karyawan dengan format mata uang yang rapi menggunakan number_format().
+  number_format($data['gaji'], 0, ',', '.') digunakan untuk memformat angka gaji agar lebih mudah dibaca (contoh: 15000000 menjadi Rp 15.000.000).
+
+Output yang Dihasilkan:
+Setelah melakukan perulangan untuk setiap karyawan, program akan menampilkan hasilnya dalam format yang lebih mudah dibaca, dengan masing-masing rincian karyawan yang terpisah.
+
+--- SOAL 3 ---
+DISKON 
+--- JAWABAN --
+- INPUT - 
+
 
