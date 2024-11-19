@@ -1,1 +1,102 @@
+--- SOAL 1 ---
+perbedaan while sama do while
+--- JAWABAN --
+1. Pengertian Umum
+- While Loop: Perulangan while adalah jenis perulangan yang memeriksa kondisi sebelum menjalankan blok kode. 
+Jika kondisi tersebut bernilai true, maka blok kode akan dieksekusi. Jika tidak, perulangan tidak akan dijalankan sama sekali.
+- Do...While Loop: Perulangan do...while mirip dengan while, tetapi perbedaan utamanya adalah bahwa perulangan ini akan menjalankan blok kode 
+setidaknya satu kali sebelum memeriksa kondisi. Setelah menjalankan blok kode, baru kemudian kondisi diperiksa.
+2. Perbedaan Eksekusi Awal:
+- Pada while, jika kondisi tidak terpenuhi sejak awal, maka blok kode tidak akan dieksekusi sama sekali.
+- Pada do...while, blok kode akan selalu dieksekusi minimal satu kali, bahkan jika kondisi awalnya false.
+
+while	:
+- Pemeriksaan kondisi	= Sebelum blok kode dijalankan	
+- Eksekusi pertama = Tidak akan dieksekusi jika kondisi salah	
+- Penggunaan umum	= Digunakan jika kondisi harus diuji di awal	
+do-while : 
+- Setelah blok kode dijalankan
+- Selalu dieksekusi setidaknya sekali
+- Digunakan jika blok harus dieksekusi minimal satu kali
+
+--- SOAL 2 (contoh) ---
+harga barang if else
+--- JAWABAN ---
+- INPUT -  
+<?php
+$barang = [
+    ["nama" => "kunciran pita", "harga" => 20000, "jumlah" => 2],
+    ["nama" => "sendal", "harga" => 50000, "jumlah" => 3]
+];
+
+$total = 0;
+foreach ($barang as $item) {
+    $total += $item["harga"] * $item["jumlah"];
+}
+
+echo "Total harga: Rp " . $total;
+?>
+
+- OUTPUT - 
+Total harga: Rp 190000
+
+- LOGIKA PEMROGRAMAN - 
+- Array $barang berisi beberapa barang, yang masing-masing memiliki nama, harga, dan jumlah.
+- Perulangan foreach digunakan untuk mengakses setiap elemen dalam array $barang. Setiap elemen adalah array yang berisi data tentang barang.
+- Total Harga dihitung dengan mengalikan harga barang dengan jumlahnya dan menambahkannya ke total.
+
+Penjelasan output :
+- Kunciran pita: harga 30, jumlah 2 → total = 30 * 2 = 60
+- Sendal: harga 50, jumlah 2 → total = 50 * 2 = 100
+- Total = 60 + 100 = 190
+
+--- SOAL 3 (cotoh)
+array udh dikasih trs buat count 
+- INPUT - 
+<?php
+// Mendefinisikan array dengan beberapa elemen
+$buah = ["Apel", "Jeruk", "Pisang", "Mangga", "Anggur"];
+
+// Menghitung jumlah elemen dalam array
+$jumlah_buah = count($buah);
+
+// Menampilkan hasil
+echo "Jumlah buah dalam array adalah: $jumlah_buah\n";
+
+// Menampilkan semua elemen dalam array
+echo "Daftar buah: \n";
+foreach ($buah as $item) {
+    echo "- $item\n";
+}
+?>
+
+- OUTPUT - 
+Jumlah buah dalam array adalah: 5 Daftar buah: - Apel - Jeruk - Pisang - Mangga - Anggur
+
+- LOGIKA PEMROGRAMAN - 
+1. Definisi Array:
+Program mendefinisikan sebuah array $buah yang berisi beberapa nama buah.
+Dalam contoh ini, array memiliki lima elemen: "Apel", "Jeruk", "Pisang", "Mangga", dan "Anggur".
+2. Menghitung Jumlah Elemen:
+- Fungsi count() digunakan untuk menghitung jumlah elemen dalam array $buah. Fungsi ini mengembalikan 
+jumlah total elemen yang ada di dalam array.
+- Hasil perhitungan disimpan dalam variabel $jumlah_buah.
+3. Menampilkan Hasil:
+- Program mencetak jumlah buah yang ada dalam array menggunakan echo.
+- Selanjutnya, program menggunakan loop foreach untuk menampilkan semua elemen dalam array. Setiap elemen dicetak dengan format yang rapi.
+4. Logika Pemrograman
+- Pengorganisasian Data:
+Menggunakan array untuk menyimpan data (dalam hal ini, nama-nama buah) membuat program lebih terstruktur dan mudah dikelola. 
+Array memungkinkan kita untuk menyimpan beberapa nilai di bawah satu variabel.
+- Fungsi Built-in:
+Menggunakan fungsi count() adalah cara yang efisien untuk mendapatkan jumlah elemen dalam array tanpa perlu menulis logika tambahan. 
+Ini menunjukkan penggunaan fungsi built-in PHP yang mempercepat pengembangan dan mengurangi kompleksitas kode.
+- Iterasi Melalui Array:
+Dengan menggunakan loop foreach, kita dapat dengan mudah mengakses setiap elemen dalam array tanpa perlu menggunakan indeks. 
+Ini membuat kode lebih bersih dan lebih mudah dibaca.
+- Output yang Informatif:
+Program memberikan output yang informatif kepada pengguna, tidak hanya dengan menunjukkan jumlah elemen tetapi 
+juga dengan mencetak semua elemen yang ada di dalam array.
+
+
 
