@@ -1,0 +1,43 @@
+1.Buat Tabel Mata_Kuliah dengan Constraint SKS
+CREATE TABLE Mata_Kuliah ( Kode_MK CHAR(5) PRIMARY KEY,
+Nama_Mata_Kuliah VARCHAR(50),
+SKS INT CHECK (SKS BETWEEN 1 AND 4),
+Semester INT
+);
+Pesan error otomatis muncul jika SKS tidak valid.
+
+
+2.Buat Tabel Mahasiswa
+CREATE TABLE Mahasiswa ( NIM CHAR(8) PRIMARY KEY,
+Nama_Mahasiswa VARCHAR(50), Tgl_Lahir DATE,
+Jurusan VARCHAR(50), Semester INT, Kode_MK CHAR(5),
+FOREIGN KEY (Kode_MK) REFERENCES Mata_Kuliah(Kode_MK)
+);
+3.Buat View V_Data_Mahasiswa
+CREATE VIEW V_Data_Mahasiswa AS SELECT
+NIM,
+Nama_Mahasiswa AS Name, Tgl_Lahir AS Birth_Date, Jurusan,
+Semester, Kode_MK
+FROM Mahasiswa;
+
+Tampilkan data:
+SELECT * FROM V_Data_Mahasiswa;
+4.Operasi JOIN Sederhana
+SELECT
+Mahasiswa.NIM, Mahasiswa.Nama_Mahasiswa, Mata_Kuliah.Nama_Mata_Kuliah
+FROM Mahasiswa
+INNER JOIN Mata_Kuliah ON Mahasiswa.Kode_MK = Mata_Kuliah.Kode_MK;
+5.Pengecekan Data Mahasiswa Berdasarkan Semester
+Mahasiswa Semester > 6:
+SELECT COUNT(*) AS Jumlah_Mahasiswa FROM Mahasiswa WHERE Semester > 6;
+
+
+IF (SELECT COUNT(*) FROM Mahasiswa WHERE Semester > 6) > 2 PRINT 'Mahasiswa yang berada di semester akhir melebihi batas.';
+Mahasiswa Semester <= 4:
+SELECT COUNT(*) AS Jumlah_Mahasiswa, Nama_Mahasiswa, Semester FROM Mahasiswa
+WHERE Semester <= 4;
+
+
+IF (SELECT COUNT(*) FROM Mahasiswa WHERE Semester <= 4) > 2 PRINT 'Mahasiswa semester awal.';
+6.Backup Database
+BACKUP DATABASE universitas_npm TO DISK = 'C:\backup_data_npm.bak';
